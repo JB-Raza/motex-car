@@ -31,7 +31,7 @@ export default function InventoryGrid() {
 
             {/* listings section */}
 
-            <div className="custom-container px-5 py-30 grid grid-cols-12 gap-6">
+            <div className="custom-container px-5 py-30 grid grid-cols-12 gap-y-6 sm:gap-x-6">
                 {/* filter col */}
                 <div className="col-span-12 flex flex-col gap-7 md-lg:!col-span-3">
                     {/* search */}
@@ -144,7 +144,7 @@ export default function InventoryGrid() {
                 {/* data col */}
                 <div className="col-span-12 md-lg:col-span-9">
                     {/* top bar */}
-                    <div className="flex justify-between items-center flex-wrap py-2 px-2 bg-white rounded-lg">
+                    <div className="flex justify-between items-center flex-wrap gap-y-4 py-2 px-2 bg-white rounded-lg">
                         <p className="font-medium ps-2">Showing 1-8 of 50 Results</p>
 
                         {/* display listings style */}

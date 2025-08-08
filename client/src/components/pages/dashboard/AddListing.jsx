@@ -58,7 +58,6 @@ export default function AddListing() {
 
   }
 
-  // console.log(listingData)
 
   return (
     <div>
@@ -436,7 +435,6 @@ export default function AddListing() {
                 <input type="checkbox" id={feature} className='h-[15px] accent-[var(--theme-color)] w-[16px]' />
                 <label
                   onClick={() => {
-                    console.log(listingData)
                     setListingData((prev) => ({
                       ...prev,
                       features: listingData.features.some(f => f == feature) ?

@@ -157,7 +157,7 @@ export default function Footer() {
             {/* copywrite footer */}
             <div className="bg-[var(--footer-bg)] relative bottom-footer">
                 <div className="relative z-[12] custom-container flex justify-between max-[600px]:justify-center max-[600px]:flex-wrap gap-y-3 items-center p-5">
-                    <p className="text-white">© Copyright 2025 <span className="text-[var(--theme-color)] font-semibold">MOTEX</span> All Rights Reserved.</p>
+                    <p className="text-white max-[600px]:text-center">© Copyright 2025 <span className="text-[var(--theme-color)] font-semibold">MOTEX</span> All Rights Reserved.</p>
 
                     <div className="flex items-center gap-x-4">
                         <div className="h-[38px] w-[38px] text-[var(--theme-color)] hover:text-white hover:bg-black transition-colors duration-500 cursor-pointer flex items-center justify-center rounded-xl bg-white">

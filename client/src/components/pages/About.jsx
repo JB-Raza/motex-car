@@ -81,7 +81,7 @@ export default function About() {
                 {/* bg pattern */}
                 <div className="absolute inset-0 z-[10] opacity-20" style={{ backgroundImage: `url(${IMAGES.Bg_String_Pattern})`, backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundSize: "cover" }}></div>
                 {/* data */}
-                <div className="grid grid-cols-12 custom-container relative z-[12]">
+                <div className="grid grid-cols-12 custom-container gap-y-[30px] relative z-[12]">
                     {/* col 1 */}
                     <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 flex flex-col items-center gap-y-2">
                         <div className="h-[120px] w-[120px] rounded-full flex items-center justify-center border-5 border-white bg-black ">
@@ -156,7 +156,7 @@ export default function About() {
 
                         {/* card */}
                         {teamData.map((person, index) => (
-                            <div key={index} className={`h-full transition-transform duration-500 hover:-translate-y-[10px] max-w-[300px] bg-white rounded-xl p-3 group/card shadow-[1px_1px_30px_5px_rgba(0,0,0,0.05)]`}>
+                            <div key={index} className={`h-full mx-auto transition-transform duration-500 hover:-translate-y-[10px] max-w-[300px] bg-white rounded-xl p-3 group/card shadow-[1px_1px_30px_5px_rgba(0,0,0,0.05)]`}>
                                 {/* image */}
                                 <div className="relative overflow-clip rounded-lg">
                                     <img src={person.profilePic} alt="member 1" className={`w-full rounded-xl transition-all duration-400`} />

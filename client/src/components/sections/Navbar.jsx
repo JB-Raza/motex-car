@@ -1,18 +1,32 @@
 import { useEffect, useState, useRef } from 'react'
-import { ICONS } from '../../files'
+import { ICONS, IMAGES } from '../../files'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faGauge, faLayerGroup, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { FaRegHeart, FaRegUser, FaSignOutAlt } from 'react-icons/fa'
+import { MdSettings } from 'react-icons/md'
 
 import { Button, NavItem } from '../universalComponents/index'
 import AboutSidebar from './AboutSidebar.jsx'
+import { Link, useNavigate } from 'react-router'
+
+// redux
+import { useSelector, useDispatch } from 'react-redux'
+import { logoutUser } from '../../redux/userSlice.js'
 
 
 export default function Navbar() {
+    const user = useSelector(data => data.user)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [isNavbarOpen, setIsNavbarOpen] = useState(false)
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
     const [topOffset, setTopOffset] = useState(0)
     const sidebarOpenerRef = useRef()
+
+    const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false)
+    const profileDropdownRef = useRef()
+    const profileBtnRef = useRef()
 
 
     // open and close navbar
@@ -38,6 +52,20 @@ export default function Navbar() {
         }
     }, [])
 
+    // profile dropdown
+    useEffect(() => {
+        const el = profileDropdownRef.current
+        if (!el) return
+        function clickOutside(e) {
+            if (!el.contains(e.target) && profileBtnRef.current && !profileBtnRef.current.contains(e.target)) {
+                setIsProfileDropdownOpen(false)
+            }
+        }
+        window.addEventListener("click", clickOutside)
+
+        return () => window.removeEventListener("click", clickOutside)
+    }, [isProfileDropdownOpen])
+
     return (
         <>
             <header className={`bg-white shadow-md shadow-[rgba(0,0,0,0.08)] z-[200] ${topOffset > 100 ? "fixed left-0 right-0 top-0" : "relative"}`}>
@@ -59,12 +87,47 @@ export default function Navbar() {
                     <div className="flex items-center gap-x-5">
                         <FontAwesomeIcon icon={faSearch} className='text-[var(--dark-color)] hover:text-[var(--theme-color)] transition-colors duration-300 cursor-pointer text-[17px]' />
 
-                        <Button
-                            text={"Add Listing"}
-                            icon={faPlusCircle}
-                            hoverBg={"bg-[var(--dark-color)]"}
-                            className='hidden min-[1080px]:flex'
-                        />
+                        {/* profile icon */}
+                        {user.user && <div className="relative">
+                            <button
+                                ref={profileBtnRef}
+                                onClick={() => setIsProfileDropdownOpen(p => !p)}
+                                className="cursor-pointer flex items-center justify-center w-[47px] p-[2.5px] min-w-[47px] h-[47px] border-[3px] border-[var(--theme-color)] rounded-full overflow-clip">
+                                <img src={IMAGES.Car_Author} alt="user" className='rounded-full' />
+                            </button>
+                            {/* dropdown */}
+                            <div ref={profileDropdownRef} className={`${isProfileDropdownOpen ? "" : "hidden"} absolute py-2 -right-1/3 top-[calc(100%+10px)] shadow-[1px_1px_30px_5px_rgba(0,0,0,0.05)] min-w-[200px] rounded-lg bg-white flex flex-col overflow-clip`}>
+                                <Link to={"/dashboard"} onClick={() => setIsProfileDropdownOpen(false)} className="py-3 px-4 flex items-center gap-x-1 text-[#212529] hover:text-[var(--theme-color)] hover:translate-x-[10px] transition-all duration-500 cursor-pointer outline-none">
+                                    <FontAwesomeIcon icon={faGauge} className='w-[20px]' />
+                                    <span className="font-semibold capitalize">Dashoard</span>
+                                </Link>
+                                <Link to={"/dashboard/profile"} onClick={() => setIsProfileDropdownOpen(false)} className="py-3 px-4 flex items-center gap-x-1 text-[#212529] hover:text-[var(--theme-color)] hover:translate-x-[10px] transition-all duration-500 cursor-pointer outline-none">
+                                    <FaRegUser className='w-[20px]' />
+                                    <span className="font-semibold capitalize">My Profile</span>
+                                </Link>
+                                <Link to={"/dashboard/my-listings"} onClick={() => setIsProfileDropdownOpen(false)} className="py-3 px-4 flex items-center gap-x-1 text-[#212529] hover:text-[var(--theme-color)] hover:translate-x-[10px] transition-all duration-500 cursor-pointer outline-none">
+                                    <FontAwesomeIcon icon={faLayerGroup} className='w-[20px]' />
+                                    <span className="font-semibold capitalize">My Listing</span>
+                                </Link>
+                                <Link to={"/dashboard/favorites"} onClick={() => setIsProfileDropdownOpen(false)} className="py-3 px-4 flex items-center gap-x-1 text-[#212529] hover:text-[var(--theme-color)] hover:translate-x-[10px] transition-all duration-500 cursor-pointer outline-none">
+                                    <FaRegHeart className='w-[20px]' />
+                                    <span className="font-semibold capitalize">My Farorites</span>
+                                </Link>
+                                <Link to={"/dashboard/settings"} onClick={() => setIsProfileDropdownOpen(false)} className="py-3 px-4 flex items-center gap-x-1 text-[#212529] hover:text-[var(--theme-color)] hover:translate-x-[10px] transition-all duration-500 cursor-pointer outline-none">
+                                    <MdSettings className='w-[20px]' />
+                                    <span className="font-semibold capitalize">Settings</span>
+                                </Link>
+                                <button onClick={() => {
+                                    setIsProfileDropdownOpen(false)
+                                    dispatch(logoutUser())
+                                    navigate("/auth/login")
+                                }} className="py-3 px-4 flex items-center gap-x-1 text-[#212529] hover:text-[var(--theme-color)] hover:translate-x-[10px] transition-all duration-500 cursor-pointer outline-none">
+                                    <FaSignOutAlt className='w-[20px]' />
+                                    <span className="font-semibold capitalize">Logout</span>
+                                </button>
+                            </div>
+                        </div>}
+
 
                         {/* hamburger for sidebar */}
                         <div

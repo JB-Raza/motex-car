@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelopesBulk, faPhoneVolume, faAlarmClock, faRightToBracket, faUser } from '@fortawesome/free-solid-svg-icons'
 import { faFacebook, faInstagram, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons"
 import { Link } from 'react-router'
 
+// redux
+import { useSelector } from 'react-redux'
+
 export default function TopNav() {
+
+    const user = useSelector(data => data.user)
+
+
     return (
         <div className='bg-[var(--theme-color)] '>
             <div className="max-w-[92%] min-w-[75vw] bg-[var(--dark-color)] mx-auto" style={{
@@ -12,7 +19,7 @@ export default function TopNav() {
 
             }}>
 
-                <div className="custom-container mx-auto flex justify-between px-5 py-3 text-white">
+                <div className="custom-container mx-auto flex flex-wrap justify-between px-5 py-3 text-white">
                     {/* left */}
                     <div className="flex items-center gap-x-3 xl:gap-x-5">
                         {/* email */}
@@ -23,7 +30,7 @@ export default function TopNav() {
                         {/* phone */}
                         <div className="flex gap-x-0.5 text-[16px] items-center cursor-pointer">
                             <FontAwesomeIcon icon={faPhoneVolume} className='text-[var(--theme-color)]' />
-                            <span className=''>+2 123 456 7898</span>
+                            <span className='text-nowrap'>+2 123 456 7898</span>
                         </div>
                         {/* date */}
                         <div className="hidden min-[800px]:flex  gap-x-0.5 text-[16px] items-center cursor-pointer">
@@ -35,7 +42,7 @@ export default function TopNav() {
                     {/* right login/signup social links */}
                     <div className="flex items-center gap-x-5">
 
-                        <div className="flex items-center gap-x-3">
+                        {!user.user && <div className={`flex items-center gap-x-3`}>
                             <Link to={"/auth/login"} className="text-white hover:text-[var(--theme-color)] transition-colors duration-300 cursor-pointer flex items-center gap-x-0.5">
                                 <FontAwesomeIcon icon={faRightToBracket} className='' />
                                 <span className='font-normal'>Login</span>
@@ -44,7 +51,7 @@ export default function TopNav() {
                                 <FontAwesomeIcon icon={faUser} className='' />
                                 <span className='font-normal'>Signup</span>
                             </Link>
-                        </div>
+                        </div>}
                         {/* social links */}
                         <div className="hidden md-lg:flex items-center gap-x-3">
                             <span className='me-3 hidden min-[1036px]:inline'>Follow Us:</span>

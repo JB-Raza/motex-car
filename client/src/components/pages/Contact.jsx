@@ -105,7 +105,7 @@ export default function Contact() {
               </div>
               {/* message */}
               <div className="">
-                <textarea name="message" id="message" value={formData.message} onChange={handleInputChange} rows={5} className='mt-2 text-sm sm:text-[16px] py-3.5 px-4 w-full focus:outline-1 outline-[var(--theme-color)] border rounded-xl bg-white border-neutral-200 resize-none mb-5' placeholder='Write Your Message'></textarea>
+                <textarea name="message" id="message" value={formData.message} onChange={handleInputChange} rows={5} className='text-sm sm:text-[16px] py-3.5 px-4 w-full focus:outline-1 outline-[var(--theme-color)] border rounded-xl bg-white border-neutral-200 resize-none mb-5' placeholder='Write Your Message'></textarea>
               </div>
 
               <Button

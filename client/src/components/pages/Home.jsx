@@ -99,7 +99,7 @@ export default function Home() {
                 {/* bg pattern */}
                 <div className="absolute inset-0 z-[10] opacity-20" style={{ backgroundImage: `url(${IMAGES.Bg_String_Pattern})`, backgroundPosition: "center", backgroundRepeat: "no-repeat", backgroundSize: "cover" }}></div>
                 {/* data */}
-                <div className="grid grid-cols-12 custom-container relative z-[12]">
+                <div className="grid grid-cols-12 !gap-y-[30px] custom-container relative z-[12]">
                     {/* col 1 */}
                     <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 flex flex-col items-center gap-y-2">
                         <div className="h-[120px] w-[120px] rounded-full flex items-center justify-center border-5 border-white bg-black ">
@@ -164,7 +164,7 @@ export default function Home() {
             {/* car body type */}
             <div className="bg-white py-30">
 
-                <div className="custom-container">
+                <div className="custom-container px-5">
                     <div className="flex items-center justify-center gap-x-2 text-[var(--theme-color)] mb-1.5">
                         <FontAwesomeIcon icon={faCar} className='text-sm sm:text-[18px]' />
                         <h4 className="tracking-[3px] font-bold text-sm sm:text-[17px] uppercase">Car Category</h4>

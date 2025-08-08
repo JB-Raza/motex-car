@@ -14,10 +14,14 @@ import { IoMdSpeedometer } from "react-icons/io";
 import { FiLayers, FiPlusCircle } from "react-icons/fi";
 import { Link, Outlet, useLocation, useNavigate } from 'react-router';
 
+// redux
+import { useDispatch } from 'react-redux'
+import { logoutUser } from '../../../redux/userSlice'
+
 
 
 export default function Dashboard() {
-
+    const dispatch = useDispatch()
     const location = useLocation()
     const navigate = useNavigate()
     const path = location.pathname.split("/")
@@ -134,7 +138,7 @@ export default function Dashboard() {
                                     {/* logout */}
                                     <button
                                         onClick={() => {
-                                            localStorage.removeItem("accessToken")
+                                            dispatch(logoutUser())
                                             navigate("/auth/login")
                                         }}
                                         className={`font-medium cursor-pointer transition-[padding] duration-500 hover:ps-4 px-3 py-2 rounded-md flex items-center gap-x-2 ${activePage == "logout" ? " bg-[var(--theme-color)] text-white" : "text-[var(--dark-color)]"}`}>

@@ -19,7 +19,7 @@ export default function Button({
                 <span>
                     <FontAwesomeIcon icon={icon} className='relative z-[12]' />
                 </span>}
-            <span className='relative z-[12]'>{text}</span>
+            <span className='relative z-[12] text-nowrap'>{text}</span>
 
         </button>
     )

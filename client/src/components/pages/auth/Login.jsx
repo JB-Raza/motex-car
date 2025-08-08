@@ -6,10 +6,14 @@ import { faAngleDoubleRight, faArrowRightFromBracket } from '@fortawesome/free-s
 import { ICONS, IMAGES } from '../../../files.js'
 import { FaFacebookF, FaGoogle, FaTwitter } from 'react-icons/fa'
 
+// redux
+import { useDispatch } from 'react-redux'
+import { setUser } from '../../../redux/userSlice.js'
 
 export default function Login() {
 
     const [formData, setFormData] = useState({ email: "", password: "" })
+    const dispatch = useDispatch()
 
     const navigate = useNavigate()
 
@@ -23,7 +27,9 @@ export default function Login() {
     const handleFormSubmit = (e) => {
         e.preventDefault()
         try {
-            localStorage.setItem("accessToken", "token")
+            // localStorage.setItem("accessToken", "token")
+            dispatch(setUser("#1234"))
+
             navigate("/dashboard")
         } catch (error) {
             console.log(error)
@@ -45,7 +51,7 @@ export default function Login() {
                 </div>
             </div>
 
-            <div className="custom-container !my-30">
+            <div className="custom-container px-3 !my-30">
 
                 <form
                     className='rounded-xl max-w-[500px] bg-white shadow-[1px_1px_30px_5px_rgba(0,0,0,0.05)] mx-auto px-5 sm:px-10 py-12 flex flex-col'>

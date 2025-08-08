@@ -17,14 +17,14 @@ export default function MyListings() {
       {/* my listings */}
       <div className="px-5 py-3 bg-white rounded-lg shadow-[1px_1px_30px_5px_rgba(0,0,0,0.05)]">
         {/* topbar */}
-        <div className="flex justify-between items-center">
+        <div className="flex flex-wrap justify-between gap-y-1 items-center">
           <h4 className="text-[20px] text-[var(--dark-color)] font-semibold">My Listings</h4>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
 
             <div className="relative">
               <input type='text'
                 placeholder='Search...'
-                className='text-sm sm:text-[16px] py-2.5 ps-10 pe-4 w-full max-w-[250px] focus:outline-1 outline-[var(--theme-color)] border rounded-xl border-neutral-200' />
+                className='min-w-[200px] text-sm sm:text-[16px] py-2.5 ps-10 pe-4 w-full max-w-[250px] focus:outline-1 outline-[var(--theme-color)] border rounded-xl border-neutral-200' />
               <FaSearch className='absolute top-1/2 -translate-y-1/2 left-4 text-[var(--body-text-color)] opacity-60' />
             </div>
             <Button text={"Add Listing"} icon={faPlusCircle} className='!py-2.5 !px-3 !font-medium' />

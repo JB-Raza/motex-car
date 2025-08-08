@@ -45,7 +45,7 @@ export default function Register() {
         </div>
       </div>
 
-      <div className="custom-container !my-30">
+      <div className="custom-container px-3 !my-30">
 
         <form
           className='rounded-xl max-w-[500px] bg-white shadow-[1px_1px_30px_5px_rgba(0,0,0,0.05)] mx-auto px-5 sm:px-10 py-12 flex flex-col'>

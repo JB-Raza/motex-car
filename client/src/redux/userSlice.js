@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+// use reduxThunk to fetch user automatically and put in redux state in the initialState
+
 const initialState = {
     user: null
 }

@@ -22,7 +22,7 @@ export default function Hero() {
                 modules={[Autoplay]}
                 spaceBetween={0}
                 loop
-                // autoplay={{ delay: 5000 }}
+                autoplay={{ delay: 5000 }}
                 slidesPerView={1}
                 onSwiper={(swiper) => swiperRef.current = swiper}
             >

@@ -5,7 +5,8 @@ import Footer from './Footer.jsx'
 import ChatSection from './ChatSection.jsx'
 import Hero from './Home/Hero.jsx'
 import FindCar from './Home/FindCar.jsx'
+import ProfileIcon from './ProfileIcon.jsx'
 
 
-export { Navbar, ChatSection, TopNav, Hero, FindCar, Testimonial, Footer, }
+export { Navbar, ProfileIcon, ChatSection, TopNav, Hero, FindCar, Testimonial, Footer, }
 

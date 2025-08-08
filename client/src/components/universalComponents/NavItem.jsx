@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router";
 
 
-export default function NavItem({ item }) {
+export default function NavItem({ item, onClick = null }) {
   const dropdownRef = useRef(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
@@ -64,7 +64,7 @@ export default function NavItem({ item }) {
       onMouseLeave={windowWidth > 980 ? handleMouseLeave : null}
       className="relative inline-block group">
 
-      <NavLink to={item?.path} className="flex items-center justify-between md-lg:items-center gap-x-1 text-[var(--dark-color)] hover:text-[var(--theme-color)] cursor-pointer py-3 md-lg:py-7">
+      <NavLink to={item?.path} onClick={onClick} className="flex items-center justify-between md-lg:items-center gap-x-1 text-[var(--dark-color)] hover:text-[var(--theme-color)] cursor-pointer py-3 md-lg:py-7">
         <span className="font-bold text-nowrap">{item.label}</span>
         {item.subNav?.length > 0 && (
           <FontAwesomeIcon icon={faAngleDown} className="text-sm" />
@@ -158,7 +158,7 @@ function SubnavChild({ subnav, className }) {
 
           {subnav?.subNav?.length > 0 && subnav.subNav.map((option, index) => (
             <NavLink
-            to={option?.path}
+              to={option?.path}
               key={index}
               className="group/childSubnav relative flex justify-between py-3 items-center gap-x-0 text-[var(--dark-color)] hover:text-[var(--theme-color)] cursor-pointer border-b border-neutral-200 px-5"
             >

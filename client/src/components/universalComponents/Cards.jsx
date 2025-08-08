@@ -1,4 +1,4 @@
-import { FaRegCalendar, FaRegCalendarAlt, FaRegHeart, FaRegUser, FaRegUserCircle, FaStar } from "react-icons/fa";
+import { FaHeart, FaRegCalendarAlt, FaRegHeart, FaRegUserCircle, FaStar } from "react-icons/fa";
 
 import { GiSteeringWheel } from 'react-icons/gi'
 import { FaRoad, FaCar, FaGasPump } from 'react-icons/fa'
@@ -7,10 +7,12 @@ import { faArrowRight, faEye, faQuoteRightAlt, faStar } from '@fortawesome/free-
 import { FiRepeat } from 'react-icons/fi';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from "react-router";
+import { useState } from "react";
 
 
 
 export const ListingCard = ({ data, listStyle = "grid" }) => {
+    const [isFavorite, setIsFavorite] = useState(false)
 
     return (
         <div className={`${listStyle == "grid" ? "h-full max-w-[300px]" : "flex gap-x-3 flex-col max-w-[280px] sm:max-w-[300px] md:max-w-full md:flex-row"} bg-white rounded-lg p-3 shadow-sm shadow-[rgba(0,0,0,0.05)] group/card`}>
@@ -23,8 +25,8 @@ export const ListingCard = ({ data, listStyle = "grid" }) => {
 
                 {/* wishlist and swap icon */}
                 <div className="absolute top-3 right-3 translate-x-[100%] group-hover/card:translate-x-0 opacity-0 group-hover/card:opacity-100 transition-all ease-out duration-600">
-                    <button className="flex items-center justify-center h-[35px] w-[35px] rounded-full bg-[var(--theme-color)] hover:bg-[var(--dark-color)] transition-colors duration-400 cursor-pointer mb-2">
-                        <FaRegHeart className='text-white' />
+                    <button onClick={() => setIsFavorite(p => !p)} className="flex items-center justify-center h-[35px] w-[35px] rounded-full bg-[var(--theme-color)] hover:bg-[var(--dark-color)] transition-colors duration-400 cursor-pointer mb-2">
+                        {isFavorite ? <FaHeart className='text-white' /> : <FaRegHeart className='text-white' />}
                     </button>
                     <button className="flex items-center justify-center h-[35px] w-[35px] rounded-full bg-[var(--theme-color)] hover:bg-[var(--dark-color)] transition-colors duration-400 cursor-pointer">
                         <FiRepeat className='text-white' />
@@ -36,7 +38,7 @@ export const ListingCard = ({ data, listStyle = "grid" }) => {
                 <div className='px-2 pt-2'>
                     {/* title */}
                     <Link to={`/inventory/${data._id}`}>
-                    <h5 className="font-bold text-[18px] text-[var(--dark-color)] hover:text-[var(--theme-color)] cursor-pointer transition-colors duration-300 w-max">{data.title}</h5>
+                        <h5 className="font-bold text-[18px] text-[var(--dark-color)] hover:text-[var(--theme-color)] cursor-pointer transition-colors duration-300 w-max">{data.title}</h5>
                     </Link>
 
                     {/* rating */}
